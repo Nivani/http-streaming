@@ -1,0 +1,13 @@
+{
+  "name": "api",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "koa": "^2.13.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node ./api.js"
+  },
+  "author": "Nick Van Nieuwenhuyse",
+  "license": "ISC"
+}
