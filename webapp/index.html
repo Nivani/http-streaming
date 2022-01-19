@@ -8,9 +8,9 @@
 <body>
 <div id="app" class="container">
     <h3>{{ measurements.length }} measurements have been loaded</h3>
-    <p>
-        <button type="button" class="btn btn-primary" @click="streamFile()" :disabled="streaming">Start streaming!</button>
-    </p>
+    <button type="button" class="btn btn-primary" @click="streamHttp11()" :disabled="streaming">Start streaming with HTTP1.1!</button>
+    &nbsp;
+    <button type="button" class="btn btn-primary" @click="streamHttp2()" :disabled="streaming">Start streaming with HTTP2!</button>
     <table class="table table-sm table-striped" v-if="measurements.length > 0">
         <thead>
             <tr>
