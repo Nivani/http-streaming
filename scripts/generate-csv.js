@@ -11,7 +11,7 @@ function run({ numberOfRecords }) {
 
     console.log('id;timestamp;value');
 
-    for (var i = 0; i < numberOfRecords; i++) {
+    for (let i = 0; i < numberOfRecords; i++) {
         const timestampTime = startTime + i * minuteMs;
         const timestampDate = new Date(timestampTime);
         const value = Math.round(Math.random() * 100000) / 100;
