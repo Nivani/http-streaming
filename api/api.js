@@ -18,7 +18,11 @@ app.use(async ctx => {
     }
 });
 
-http.createServer(app.callback()).listen(3000);
+
+const http11Port = 3000;
+const http2Port = 3443;
+
+http.createServer(app.callback()).listen(http11Port);
 
 http2.createSecureServer(
     {
@@ -26,7 +30,9 @@ http2.createSecureServer(
         cert: fs.readFileSync(path.resolve('../../../../local-https/localhost-mkcert.pem')),
     },
     app.callback(),
-).listen(3443);
+).listen(http2Port);
+
+console.log(`API is running, use port ${http11Port} for HTTP 1.1 and port ${http2Port} for HTTP 2`);
 
 function handleStream(ctx) {
     const src = fs.createReadStream('./big.csv');
