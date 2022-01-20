@@ -1,7 +1,7 @@
 export default async function *parseCsv(readableStream) {
     let headers = undefined;
     for await (const line of readLines(readableStream.getReader())) {
-        const splitResult = line.split(';').map(header => header.trim());
+        const splitResult = line.split(';').map(value => value.trim());
 
         if (!headers) {
             headers = splitResult
