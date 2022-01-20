@@ -11,10 +11,10 @@ app.use(cors());
 app.use(async ctx => {
     switch (ctx.request.url) {
         case '/big.csv':
-            handleStream(ctx);
+            streamBigCsv(ctx);
             break;
         default:
-            console.warn(`Received request for unmapped URL '${url}'`);
+            console.warn(`Received request for unmapped URL '${ctx.request.url}'`);
     }
 });
 
@@ -32,9 +32,9 @@ http2.createSecureServer(
     app.callback(),
 ).listen(http2Port);
 
-console.log(`API is running, use port ${http11Port} for HTTP 1.1 and port ${http2Port} for HTTP 2`);
+console.log(`API is running, use http://localhost:${http11Port} for HTTP 1.1 and https://localhost:${http2Port} for HTTP 2`);
 
-function handleStream(ctx) {
+function streamBigCsv(ctx) {
     const src = fs.createReadStream('./big.csv');
     ctx.response.set("content-type", "text/csv");
     ctx.body = src;
