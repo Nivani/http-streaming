@@ -22,6 +22,8 @@ const App = {
                     let numberOfLines = 0;
                     for await (const record of parseCsv(response.body)) {
                         numberOfLines++;
+                        // The DOM would not like 100k measurements,
+                        // so we only show 100 of them
                         if (numberOfLines % 1000 === 0) {
                             this.measurements.push({
                                 id: record.id,
