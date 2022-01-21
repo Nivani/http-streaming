@@ -1,16 +1,9 @@
-export default async function *parseCsv(readableStream) {
-    let headers = undefined;
+export default async function *parseJsonStream(readableStream) {
     for await (const line of readLines(readableStream.getReader())) {
-        const splitResult = line.split(';').map(value => value.trim());
+        const trimmedLine = line.trim().replace(/,$/, '');
 
-        if (!headers) {
-            headers = splitResult
-        } else {
-            const obj = {};
-            for (let i=0; i < splitResult.length; i++) {
-                obj[headers[i]] = splitResult[i];
-            }
-            yield obj;
+        if (trimmedLine !== '[' && trimmedLine !== ']') {
+            yield JSON.parse(trimmedLine);
         }
     }
 }

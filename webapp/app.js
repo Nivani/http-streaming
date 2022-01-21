@@ -1,4 +1,4 @@
-import parseCsv from './parse-csv.js';
+import parseJsonStream from './parse-json-stream.js';
 
 const App = {
     data() {
@@ -9,26 +9,26 @@ const App = {
     },
     methods: {
         streamHttp11() {
-            this.streamFile('http://localhost:3000/big.csv');
+            this.streamFile('http://localhost:3000/measurements.json');
         },
         streamHttp2() {
-            this.streamFile('https://localhost:3443/big.csv');
+            this.streamFile('https://localhost:3443/measurements.json');
         },
         streamFile(url) {
             this.measurements = [];
             this.streaming = true;
             fetch(url)
                 .then(async (response) => {
-                    let numberOfLines = 0;
-                    for await (const record of parseCsv(response.body)) {
-                        numberOfLines++;
-                        // The DOM would not like 100k measurements,
+                    let numberOfItems = 0;
+                    for await (const record of parseJsonStream(response.body)) {
+                        numberOfItems++;
+                        // The DOM would not like 10k measurements,
                         // so we only show 100 of them
-                        if (numberOfLines % 1000 === 0) {
+                        if (numberOfItems % 100 === 0) {
                             this.measurements.push({
                                 id: record.id,
                                 timestamp: new Date(record.timestamp),
-                                value: parseFloat(record.value),
+                                value: record.value,
                             });
                         }
                     }
