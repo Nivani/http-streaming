@@ -16,7 +16,8 @@ Step 2: Run the API
 
 Step 3: Host the webapp
 1. `cd ./webapp`
-2. `http-server .`
+2. `npm install -g http-server`
+3. `http-server .`
 
 Step 4: See HTTP streaming in action
 1. Open [http://localhost:8080](http://localhost:8080) in your favorite web browser
