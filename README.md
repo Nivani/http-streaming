@@ -12,7 +12,7 @@ Step 1: Generate a large JSON file
 Step 2: Run the API
 1. `cd ./api`
 2. `npm install`
-3. `node api.js`
+3. `node ./api.js`
 
 Step 3: Host the webapp
 1. `cd ./webapp`
@@ -25,3 +25,25 @@ Step 4: See HTTP streaming in action
 3. Go to the network tab
 4. Set network throttling to 3G
 5. Have fun!
+
+## Using HTTP/2
+
+HTTP/2 requires HTTPS, so make sure you have a `cert` and `key` file available that you can use for local develoment. More information on how to set this up can be found here: https://web.dev/how-to-use-local-https/ 
+
+Update the paths in `api/api.js` so that they point to to your own `cert` and `key` files:
+```Javascript
+// update the paths, so that they point to your own cert and key files
+http2.createSecureServer(
+    {
+        cert: fs.readFileSync(path.resolve('../../../.https/localhost.pem')),
+        key: fs.readFileSync(path.resolve('../../../.https/localhost-key.pem')),
+    },
+    app.callback(),
+).listen(http2Port);
+```
+
+Run the API with HTTP/2 enabled:
+
+`node ./api.js -http2`
+
+To see it in action, click the button that says "Stream with HTTP/2!".

@@ -26,10 +26,11 @@ http.createServer(app.callback()).listen(http11Port);
 
 if (process.argv.indexOf('-http2') > -1) {
     const http2Port = 3443;
+    // update the paths, so that they point to your own cert and key files
     http2.createSecureServer(
         {
-            key: fs.readFileSync(path.resolve('../../../.https/localhost-key.pem')),
             cert: fs.readFileSync(path.resolve('../../../.https/localhost.pem')),
+            key: fs.readFileSync(path.resolve('../../../.https/localhost-key.pem')),
         },
         app.callback(),
     ).listen(http2Port);

@@ -7,6 +7,12 @@ const App = {
             measurements: [],
         };
     },
+    computed: {
+        measurementsLoaded() {
+            // compensate for DOM limitation in streamFile()
+            return this.measurements.length * 100;
+        },
+    },
     methods: {
         streamHttp11() {
             this.streamFile('http://localhost:3000/measurements.json');

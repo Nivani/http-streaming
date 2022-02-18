@@ -9,10 +9,10 @@
 <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 
 <div id="app" class="container">
-    <h3>{{ measurements.length }} measurements have been loaded</h3>
-    <button type="button" class="btn btn-primary" @click="streamHttp11()" :disabled="streaming">Stream with HTTP1.1!</button>
+    <h3>{{ measurementsLoaded }} measurements have been loaded</h3>
+    <button type="button" class="btn btn-primary" @click="streamHttp11()" :disabled="streaming">Stream with HTTP/1.1!</button>
     &nbsp;
-    <button type="button" class="btn btn-primary" @click="streamHttp2()" :disabled="streaming">Stream with HTTP2!</button>
+    <button type="button" class="btn btn-primary" @click="streamHttp2()" :disabled="streaming">Stream with HTTP/2!</button>
     <table class="table table-sm table-striped" v-if="measurements.length > 0">
         <thead>
             <tr>
