@@ -4,22 +4,17 @@ This repository shows how an application can use HTTP streaming to start showing
 
 ## Get started
 
-Step 1: Generate a large JSON file
-1. `cd ./scripts`
-3. `node generate-json.js 10000 > measurements.json` to create a JSON file with 10k records called `measurements.json`
-4. `mv measurements.json ../api` to move the file to the api folder
-
-Step 2: Run the API
+Step 1: Run the API
 1. `cd ./api`
 2. `npm install`
 3. `node ./api.js`
 
-Step 3: Host the webapp
+Step 2: Host the webapp
 1. `cd ./webapp`
 2. `npm install -g http-server`
 3. `http-server .`
 
-Step 4: See HTTP streaming in action
+Step 3: See HTTP streaming in action
 1. Open [http://localhost:8080](http://localhost:8080) in your favorite web browser
 2. Open devtools (F12)
 3. Go to the network tab
@@ -28,9 +23,9 @@ Step 4: See HTTP streaming in action
 
 ## Using HTTP/2
 
-HTTP/2 requires HTTPS, so make sure you have a `cert` and `key` file available that you can use for local develoment. More information on how to set this up can be found here: https://web.dev/how-to-use-local-https/ 
+Preperation: HTTP/2 requires HTTPS, so make sure you have a `cert` and `key` file available that you can use for local develoment. More information on how to set this up can be found here: https://web.dev/how-to-use-local-https/ 
 
-Update the paths in `api/api.js` so that they point to to your own `cert` and `key` files:
+Step 1: Update the paths in `api/api.js` so that they point to to your own `cert` and `key` files:
 ```Javascript
 // update the paths, so that they point to your own cert and key files
 http2.createSecureServer(
@@ -42,8 +37,8 @@ http2.createSecureServer(
 ).listen(http2Port);
 ```
 
-Run the API with HTTP/2 enabled:
+Step 2: Run the API with HTTP/2 enabled:
 
 `node ./api.js -http2`
 
-To see it in action, click the button that says "Stream with HTTP/2!".
+Step 3: See it in action by clicking the button that says "Stream with HTTP/2!".
