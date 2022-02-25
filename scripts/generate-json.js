@@ -17,9 +17,9 @@ function run({ numberOfRecords }) {
         const measurementRecord = {
             id: i + 1,
             timestamp: timestampDate.toISOString(),
-            value: Math.round(Math.random() * 100000) / 100,
+            value: (Math.sin(i / numberOfRecords * 2 * Math.PI) + 1) * 100 + (Math.random() - 0.5) * 25,
         };
-        console.log(`  ${JSON.stringify(measurementRecord)}${i < numberOfRecords - 1 ? ',' : ''}`)
+        console.log(`  ${JSON.stringify(measurementRecord)}${i < numberOfRecords - 1 ? ',' : ''}`);
     }
 
     console.log(']');
