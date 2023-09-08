@@ -2,6 +2,8 @@
 
 This repository shows how an application can use HTTP streaming to start showing results while the rest is still loading.
 
+This codebase accompanies the article [Implement HTTP Streaming with Node.js and Fetch API](https://www.loginradius.com/blog/engineering/guest-post/http-streaming-with-nodejs-and-fetch-api/).
+
 ## Get started
 
 Step 1: Run the API
